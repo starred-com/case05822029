@@ -1,0 +1,63 @@
+{
+  "name": "Case05822029",
+  "version": "1.0.0",
+  "fullpage": true,
+  "size": {
+    "width": 3,
+    "height": 4
+  },
+  "mapping": [
+    {
+      "dataSetId": "370c4ff9-005e-4f12-9acd-757e4f00d844",
+      "alias": "grid5x5_ratings",
+      "fields": [
+        {
+          "columnName": "companyid",
+          "alias": "companyid"
+        },
+        {
+          "columnName": "companyname",
+          "alias": "companyname"
+        },
+        {
+          "columnName": "uniqueformid",
+          "alias": "uniqueformid"
+        },
+        {
+          "columnName": "languageid",
+          "alias": "languageid"
+        },
+        {
+          "columnName": "subject",
+          "alias": "subject"
+        },
+        {
+          "columnName": "question",
+          "alias": "question"
+        },
+        {
+          "columnName": "rating",
+          "alias": "rating"
+        },
+        {
+          "columnName": "npsrating",
+          "alias": "npsrating"
+        },
+        {
+          "columnName": "CorrelationNPS",
+          "alias": "correlation"
+        },
+        {
+          "columnName": "deleted",
+          "alias": "deleted"
+        },
+        {
+          "columnName": "CountResponses",
+          "alias": "responses"
+        }
+      ]
+    }
+  ],
+  "fileName": "manifest.json",
+  "id": "a152508b-75f2-4627-8b50-9fc3bc5f9a37"
+}
