@@ -23,6 +23,7 @@ document.body.onload = () => {
     var query1 = 'data/v1/grid5x5_ratings?limit=25&useBeastMode=true&fields=companyid,uniqueformid,deleted,viewtype,responses&filter=deleted%20=%20no,viewtype%20in%20[%22stars%22,%22numbers%22]';
     log('Fire query 1');
     log(query1);
+    log('Expected result is a single row:')
     domo.get(query1)
         .then(function (data) {
             data.forEach(function (row) {
@@ -36,6 +37,7 @@ document.body.onload = () => {
         var query2 = 'data/v1/grid5x5_ratings?limit=25&useBeastMode=true&fields=companyname,companyid,uniqueformid,languageid,deleted,viewtype,subject,question,rating,correlation,npsrating&groupby=subject&filter=deleted%20=%20no,viewtype%20in%20[%22stars%22,%22numbers%22],rating%20%3E=%201,npsrating%20%3C%2011&max=companyname,companyid,uniqueformid,languageid,question&avg=rating,npsrating';
         log('Fire query 2');
         log(query2);
+        log('Expected result is a list of rows, which have a value for correlation')
         domo.get(query2)
             .then(function (data) {
                 data.forEach(function (row) {
