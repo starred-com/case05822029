@@ -44,7 +44,7 @@
           "alias": "npsrating"
         },
         {
-          "columnName": "CorrelationNPS",
+          "columnName": "correlation",
           "alias": "correlation"
         },
         {
@@ -52,7 +52,7 @@
           "alias": "deleted"
         },
         {
-          "columnName": "CountResponses",
+          "columnName": "responses",
           "alias": "responses"
         }
       ]
