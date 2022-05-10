@@ -20,7 +20,12 @@ function log(text) {
 
 document.body.onload = () => {
     log('onload ready');
-    var query1 = 'data/v1/grid5x5_ratings?limit=25&useBeastMode=true&fields=companyid,uniqueformid,deleted,viewtype,responses&filter=deleted%20=%20no,viewtype%20in%20[%22stars%22,%22numbers%22]';
+    var q1 = new Query();
+    q1.select(['companyid', 'uniqueformid', 'languageid', 'deleted', 'viewtype', 'responses']);
+    q1.where('deleted').equals('no');
+    q1.where('viewtype').in(['stars', 'numbers']);
+    q1.limit(25);
+    var query1 = q1.query('grid5x5_ratings') + '&useBeastMode=true';
     log('Fire query 1');
     log(query1);
     log('Expected result is a single row:')
@@ -34,7 +39,22 @@ document.body.onload = () => {
         log(error)
     }).finally(function () {
         // Nest the queries to not mix output
-        var query2 = 'data/v1/grid5x5_ratings?limit=25&useBeastMode=true&fields=companyname,companyid,uniqueformid,languageid,deleted,viewtype,subject,question,rating,correlation,npsrating&groupby=subject&filter=deleted%20=%20no,viewtype%20in%20[%22stars%22,%22numbers%22],rating%20%3E=%201,npsrating%20%3C%2011&max=companyname,companyid,uniqueformid,languageid,question&avg=rating,npsrating';
+        var q2 = new Query();
+        q2.select(['companyname', 'companyid', 'uniqueformid', 'languageid', 'deleted', 'viewtype', 'subject', 'question', 'rating', 'correlation', 'npsrating']);
+        q2.where('deleted').equals('no');
+        q2.where('viewtype').in(['stars', 'numbers']);
+        q2.where('rating').greaterThanOrEqual(1);
+        q2.where('npsrating').lessThan(11);
+        q2.aggregate('companyname', 'max');
+        q2.aggregate('companyid', 'max');
+        q2.aggregate('uniqueformid', 'max');
+        q2.aggregate('languageid', 'max');
+        q2.aggregate('question', 'max');
+        q2.aggregate('rating', 'avg');
+        q2.aggregate('npsrating', 'avg');
+        q2.groupBy('subject');
+        q2.limit(25);
+        var query2 = q2.query('grid5x5_ratings') + '&useBeastMode=true';
         log('Fire query 2');
         log(query2);
         log('Expected result is a list of rows, which have a value for correlation')
